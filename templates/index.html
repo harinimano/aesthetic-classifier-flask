@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aesthetic Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Image for Aesthetic Analysis</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required><br><br>
+            <input type="submit" value="Upload">
+        </form>
+
+        {% if feedback_message %}
+            <div class="feedback">{{ feedback_message }}</div>
+        {% endif %}
+
+        {% if image_path %}
+            <div class="preview">
+                <h3>Uploaded Image:</h3>
+                <img src="{{ url_for('static', filename='uploads/' + image_path) }}" width="300">
+            </div>
+        {% endif %}
+
+        {% if prediction_result %}
+            <div class="results">
+                <h2>Prediction Result</h2>
+                <p><strong>Tag:</strong> {{ prediction_result.tag_name }}</p>
+                <p><strong>Confidence:</strong> {{ prediction_result.confidence }}</p>
+            </div>
+        {% endif %}
+
+        {% if quality_result %}
+            <div class="quality">
+                <h2>Image Quality</h2>
+                <p><strong>Format:</strong> {{ quality_result.format }}</p>
+                <p><strong>Width:</strong> {{ quality_result.width }} px</p>
+                <p><strong>Height:</strong> {{ quality_result.height }} px</p>
+            </div>
+        {% endif %}
+
+        <div style="margin-top: 30px;">
+            <a href="/history"><button style="margin-right: 10px;">📜 View History</button></a>
+            <a href="/download"><button>⬇️ Download CSV</button></a>
+        </div>
+    </div>
+
+    <div class="footer">
+        Created by Harini Manokar @ LTI MINDTREE INTERNSHIP
+    </div>
+</body>
+</html>
