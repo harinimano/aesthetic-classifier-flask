@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📜 Prediction History</h1>
+        {% if rows %}
+            <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; background-color: #fff;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Filename</th>
+                        <th>Tag</th>
+                        <th>Confidence</th>
+                        <th>Format</th>
+                        <th>Width</th>
+                        <th>Height</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                        <tr>
+                            {% for col in row %}
+                                <td>{{ col }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No records found.</p>
+        {% endif %}
+
+        <br>
+        <a href="/" style="text-decoration: none;"><button>🔙 Back to Upload</button></a>
+    </div>
+</body>
+</html>
