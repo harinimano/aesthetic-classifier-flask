@@ -5,6 +5,10 @@ import sqlite3
 from datetime import datetime
 import csv
 from io import BytesIO, StringIO
+from init_db import initialize_db
+
+if not os.path.exists("predictions.db"):
+    initialize_db()
 
 app = Flask(__name__)
 
