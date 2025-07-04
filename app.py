@@ -114,7 +114,7 @@ def log_prediction_to_db(filename, tag, confidence, format_, width, height):
 def history():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM prediction_logs ORDER BY id DESC")
+    cursor.execute("SELECT * FROM prediction_logs ORDER BY id AESC")
     rows = cursor.fetchall()
     conn.close()
     return render_template("history.html", rows=rows)
@@ -125,7 +125,7 @@ from io import BytesIO
 def download():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM prediction_logs ORDER BY id DESC")
+    cursor.execute("SELECT * FROM prediction_logs ORDER BY id AESC")
     rows = cursor.fetchall()
     conn.close()
 
